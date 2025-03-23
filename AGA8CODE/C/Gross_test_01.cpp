@@ -147,4 +147,6 @@ int main()
             D_reference, D);
         return_value = EXIT_FAILURE;
     }
+
+    return return_value;
 }
