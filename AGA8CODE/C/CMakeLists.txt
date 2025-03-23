@@ -1,6 +1,12 @@
 cmake_minimum_required (VERSION 2.6)
 project (AGA8)
 
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    add_compile_options(-Wall -Wextra -Wno-unused-parameter)
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Wall -Wextra -Weverything -Wno-unsafe-buffer-usage -Wno-unused-parameter)
+endif()
+
 add_library(detail SHARED Detail.cpp)
 add_library(gerg SHARED GERG2008.cpp)
 add_library(gross SHARED Gross.cpp)
