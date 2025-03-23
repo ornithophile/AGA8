@@ -597,12 +597,12 @@ static void tTermsGERG(const double lntau, const std::vector<double> &x)
 
     // Calculate temperature dependent parts of the GERG-2008 equation of state
 
-    int i, mn;
+    int p, mn;
     double taup0[12+1];
 
-    i = 5;  // Use propane to get exponents for short form of EOS
-    for (std::size_t k = 1; k <= kpol[i] + kexp[i]; ++k){
-        taup0[k] = exp(toik[i][k] * lntau);
+    p = 5;  // Use propane to get exponents for short form of EOS
+    for (std::size_t k = 1; k <= kpol[p] + kexp[p]; ++k){
+        taup0[k] = exp(toik[p][k] * lntau);
     }
     for (std::size_t i = 1; i <= NcGERG; ++i){
         if (x[i] > epsilon){
