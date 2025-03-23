@@ -101,6 +101,8 @@ static double fij[MaxFlds+1][MaxFlds+1], th0i[MaxFlds+1][7+1], n0i[MaxFlds+1][7+
 static double taup[MaxFlds+1][MaxTrmP+1], taupijk[MaxFlds+1][MaxTrmM+1];
 static double dPdDsave; //Calculated in the PressureGERG subroutine, but not included as an argument since it is only used internally in the density algorithm.
 
+inline double sq(double x) { return x*x; }
+
 void MolarMassGERG(const std::vector<double> &x, double &Mm)
 {
     // Sub MolarMassGERG(x, Mm)
@@ -340,7 +342,7 @@ void PropertiesGERG(const double T, const double D, const std::vector<double> &x
     W = 1000 * Cp / Cv * dPdD / Mm;
     if (W < 0) { W = 0; }
     W = sqrt(W);
-    Kappa = pow(W, 2) * Mm / (RT * 1000 * Z);
+    Kappa = sq(W) * Mm / (RT * 1000 * Z);
 }
 
 
@@ -1517,14 +1519,14 @@ void SetupGERG()
     for (std::size_t j = i + 1; j <= MaxFlds; ++j){
       gvij[i][j] = gvij[i][j] * bvij[i][j] * pow(Vc3[i] + Vc3[j], 3);
       gtij[i][j] = gtij[i][j] * btij[i][j] * Tc2[i] * Tc2[j];
-      bvij[i][j] = pow(bvij[i][j], 2);
-      btij[i][j] = pow(btij[i][j], 2);
+      bvij[i][j] = sq(bvij[i][j]);
+      btij[i][j] = sq(btij[i][j]);
     }
   }
 
   for (std::size_t i = 1; i <= MaxMdl; ++i){
     for (std::size_t j = 1; j <= MaxTrmM; ++j){
-      gijk[i][j] = -cijk[i][j] * pow(eijk[i][j], 2) + bijk[i][j] * gijk[i][j];
+      gijk[i][j] = -cijk[i][j] * sq(eijk[i][j]) + bijk[i][j] * gijk[i][j];
       eijk[i][j] = 2 * cijk[i][j] * eijk[i][j] - bijk[i][j];
       cijk[i][j] = -cijk[i][j];
     }
