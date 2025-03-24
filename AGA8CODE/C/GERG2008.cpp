@@ -102,6 +102,7 @@ static double taup[MaxFlds+1][MaxTrmP+1], taupijk[MaxFlds+1][MaxTrmM+1];
 static double dPdDsave; //Calculated in the PressureGERG subroutine, but not included as an argument since it is only used internally in the density algorithm.
 
 inline double sq(double x) { return x*x; }
+inline double cb(double x) { return x*x*x; }
 
 void MolarMassGERG(const std::vector<double> &x, double &Mm)
 {
@@ -1517,7 +1518,7 @@ void SetupGERG()
     gvij[i][i] = 1 / Dc[i];
     gtij[i][i] = Tc[i];
     for (std::size_t j = i + 1; j <= MaxFlds; ++j){
-      gvij[i][j] = gvij[i][j] * bvij[i][j] * pow(Vc3[i] + Vc3[j], 3);
+      gvij[i][j] = gvij[i][j] * bvij[i][j] * cb(Vc3[i] + Vc3[j]);
       gtij[i][j] = gtij[i][j] * btij[i][j] * Tc2[i] * Tc2[j];
       bvij[i][j] = sq(bvij[i][j]);
       btij[i][j] = sq(btij[i][j]);

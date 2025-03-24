@@ -82,6 +82,7 @@ static double b0[4][4], b1[4][4], b2[4][4], bCHx[3][3], cCHx[3][3];
 static double c0[4][4][4], c1[4][4][4], c2[4][4][4];
 
 inline double sq(double x) { return x*x; }
+inline double cb(double x) { return x*x*x; }
 
 void MolarMassGross(const std::vector<double> &x, double &Mm)
 {
@@ -346,7 +347,7 @@ void Bmix(const double T, const std::vector<double> &xGrs, const double HCH, dou
             }
             for(std::size_t k = j; k <= 3; ++k){
                 if (i == j && j == k) {
-                    C += CC[i][i][i]*pow(xGrs[i], 3);
+                    C += CC[i][i][i]*cb(xGrs[i]);
                 }
                 else if (i != j && j != k && i != k){
                     C += 6*CC[i][j][k]*xGrs[i]*xGrs[j]*xGrs[k];
