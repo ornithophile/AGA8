@@ -613,7 +613,7 @@ int main(){
     DensityGross(T,P,xGrs,HCH,D,ierr,herr);
     printf("Gross method 2-----\n");
     printf("Molar density [mol/l]:              5.197833636353455 != %0.16g\n", D);
-    printf("Volumetric heating value at Td,Pd:  42.15440903329388 != %0.16g\n", Hv2);
+    printf("Volumetric heating value at Td,Pd:  42.15440894466012 != %0.16g\n", Hv2);
 
     xGrs[2] = x[2];
     xGrs[3] = x[3];

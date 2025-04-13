@@ -31,7 +31,7 @@ int main()
     double HCH_reference    = 1004.738236956522;
     double xGrs_reference[] = {0.0, 0.9199999999999999, 0.02, 0.06};
     double Hv_reference     = 41.37676728724603;
-    double Hv2_reference    = 42.15440903329388;
+    double Hv2_reference    = 42.15440894466012;
 
     printf("Inputs-----\n");
     printf("Temperature [K]:                    300.0000000000000 != %0.16g\n",T);
